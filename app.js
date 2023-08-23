@@ -16,8 +16,21 @@ app.get('/getNewsData', (req, res) => {
   res.send(newsData)
 })
 
-app.get('/getNewsData/:id', (req, res) => {
+app.get('/getNewsData/byId/:id', (req, res) => {
   res.send(newsData[req.params.id])
+})
+
+app.get('/getNewsData/byTitle/:title', (req, res) => {
+  const title = req.params.title
+  const newsList = []
+
+  newsData.forEach(news => {
+    if(news.title.includes(title)) {
+      newsList.push(news)
+    }
+  })
+
+  res.send(newsList)
 })
 
 app.listen(port, (req, res) => {
