@@ -33,6 +33,19 @@ app.get('/getNewsData/byTitle/:title', (req, res) => {
   res.send(newsList)
 })
 
+app.get('/getNewsData/byAuthor/:author', (req, res) => {
+  const author = req.params.author
+  const newsList = []
+
+  newsData.forEach(news => {
+    if(news.author.includes(author)) {
+      newsList.push(news)
+    }
+  })
+
+  res.send(newsList)
+})
+
 app.listen(port, (req, res) => {
   console.log('http://localhost:8080')
 
