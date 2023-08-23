@@ -23,24 +23,17 @@ app.listen(port, (req, res) => {
     q: keyword,
     language: 'ko'
   }).then(response => {
-    newsData.push(response)
-    console.log(response.totalResults)
-
     response.articles.forEach((news, index) => {
-      
+      newsData.push({
+        id: index,
+        author: news.author,
+        title: news.title,
+        description: news.description,
+        url: news.url,
+        urlToImage: news.urlToImage,
+        publishedAt: news.publishedAt,
+      })
     })
-    // for(let i = 0; i < response.articles; i++) {
-    //   console.log(response.articles[i].author)
-    //   newsData.push({
-    //     id: i,
-    //     author: response.articles[i].author,
-    //     title: response.articles[i].title,
-    //     description: response.articles[i].description,
-    //     url: response.articles[i].url,
-    //     urlToImage: response.articles[i].urlToImage,
-    //     publishedAt: response.articles[i].publishedAt,
-    //   })
-    // }
   }).catch(error => {
     console.error(error)
   })
