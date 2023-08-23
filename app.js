@@ -9,11 +9,15 @@ const newsData = []
 let port = 8080
 
 app.get('/', (req, res) => {
-  res.send('Welcome')
+  res.send('Welcome to News Data API')
 })
 
 app.get('/getNewsData', (req, res) => {
   res.send(newsData)
+})
+
+app.get('/getNewsData/:id', (req, res) => {
+  res.send(newsData[req.params.id])
 })
 
 app.listen(port, (req, res) => {
